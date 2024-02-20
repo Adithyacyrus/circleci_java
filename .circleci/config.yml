@@ -1,0 +1,31 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11
+
+    steps:
+      - checkout
+
+      # Example: Build with Maven
+      - run:
+          name: Build with Maven
+          command: mvn clean install
+
+      # Example: Run Tests
+      - run:
+          name: Run Tests
+          command: mvn test
+
+  deploy:
+    docker:
+      - image: circleci/openjdk:11
+
+    steps:
+      - checkout
+
+      # Example: Deploy to a server
+      - run:
+          name: Deploy to Server
+          command: |
+            ssh user@your-server 'bash -s' < deploy_script.sh
